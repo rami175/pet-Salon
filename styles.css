@@ -16,7 +16,7 @@ a {
 /* utilities */
 
 /* header */
-.site-init {
+.site-init1 {
 	background-color: #d6fff6;
 	background-image: url(./img/back-ground.jpg);
 	background-blend-mode: overlay;
@@ -30,6 +30,7 @@ a {
 	display: flex;
 	flex-direction: column;
 }
+
 .nav-container {
 	width: 20%;
 	display: flex;
@@ -45,6 +46,7 @@ a {
 }
 .nav-container a:hover {
 	background-color: aqua;
+	border-radius: 10px;
 }
 .logo {
 	max-width: 8rem;
@@ -52,6 +54,20 @@ a {
 	margin: auto;
 }
 /* Main */
+.display-salon {
+	background-color: aqua;
+	color: black;
+	margin: 2rem 0 2rem 0;
+	padding: 3rem;
+	/* width: 100%; */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.display-salon:hover {
+	cursor: pointer;
+}
 main {
 	margin-left: 20%;
 	margin-right: 20%;
@@ -77,10 +93,16 @@ main {
 	transition: ease-in-out 0.5s;
 	box-shadow: 10px 3px 10px #6e6b6b;
 }
+.form-area {
+	display: flex;
+	flex-direction: column;
+	border: solid black;
+}
+
 /* footer */
 footer {
-	padding: 1rem;
-	height: 7rem;
+	margin: 1rem;
+	/* height: 7rem; */
 	background-color: aqua;
 	font-weight: bold;
 	display: flex;
@@ -89,20 +111,24 @@ footer {
 }
 
 /* register */
+.mb-3 {
+	padding: 1rem;
+}
+.form1 {
+	padding: 1rem;
+}
 .reg-container {
+	margin-top: 2rem;
 	border: solid 2px black;
-	height: 28rem;
+	/* height: 28rem; */
 	margin-bottom: 1rem;
-	display: grid;
+	display: flex;
+	flex-direction: column;
 	align-items: center;
-	grid-gap: 3rem;
-	grid-template-columns: 1fr 3fr;
-	grid-template-rows: 4rem 2rem 2rem 2rem 10rem;
-	grid-template-areas:
-		"top top"
-		"side1 main1"
-		"side2 side2"
-		"main2 main2";
+	grid-gap: 1rem;
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
 }
 .grid1 {
 	grid-area: top;
@@ -110,29 +136,42 @@ footer {
 	background-color: #6e6b6b;
 	color: #d6fff6;
 }
-.grid2 {
-	grid-area: side1;
-	border: solid 1px;
+/* .grid2 {
+	grid-area: main1;
 }
 .grid3 {
-	grid-area: main1;
-	border: solid 1px;
+	grid-area: top2;
 }
 .grid4 {
-	grid-area: side2;
-	border: solid 1px;
-}
-.grid5 {
+	grid-area: main2;
+} */
+/* .grid5 {
 	grid-area: main2;
 	border: solid 1px;
 	height: max-content;
-}
+} */
 .display-area {
-	background-color: rgb(219, 215, 215);
-	padding-left: 50px;
+	background-color: rgb(84, 222, 195);
+	color: black;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	overflow: auto;
 	font-size: 24px;
+}
+.gallery {
+	padding: 1rem;
+	width: fit-content;
+	font-weight: bold;
+	font-family: "sofia";
+	font-size: 32px;
+}
+.form-div {
+	display: none;
+	transform: ;
+	transition: 3s ease-in-out;
+}
+.hide-button {
+	display: none;
+	transition: 3s ease-in-out;
 }
