@@ -76,7 +76,6 @@
 							<select class="form-control" name="" id="txtType">
 								<option value="Dog">Dog</option>
 								<option value="Cat">Cat</option>
-								<option value="Bird">Bird</option>
 								<option value="Other">Other</option>
 							</select>
 						</form>
@@ -100,17 +99,32 @@
 					<div id="display-number" class="display-area"></div>
 				</div>
 				<div class="grid3">
-					<h3>Pets Names:</h3>
-					<!-- <button
-						class="btn btn-primary brn0lg"
-						onclick="displayPetNames(salon)"
-					>
-						Show pet names
-					</button> -->
+					<h3>Pets:</h3>
 				</div>
-				<div class="gallery">
+				<div class="pet-container" id="pets"></div>
+				<!-- <div class="gallery">
 					<ul id="display-names"></ul>
-				</div>
+				</div> -->
+			</div>
+
+			<div id="main-table">
+				<button class="btn btn-dark" onclick="displayPetTable()">
+					Original order
+				</button>
+				<button class="btn btn-dark" onclick="reverseTable()">
+					Reverse table order
+				</button>
+				<table>
+					<thead>
+						<th>Name</th>
+						<th>Age</th>
+						<th>Gender</th>
+						<th>Breed</th>
+						<th>Service</th>
+						<th>Type</th>
+					</thead>
+					<tbody id="display-table"></tbody>
+				</table>
 			</div>
 		</main>
 
@@ -120,7 +134,8 @@
 				Consequatur, amet?
 			</p>
 		</footer>
-		<script src="scripts/script.js"></script>
+		<script src="./scripts/script.js"></script>
 		<script src="./scripts/register.js"></script>
+		<script src="./scripts/display.js"></script>
 	</body>
 </html>

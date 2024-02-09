@@ -1,24 +1,4 @@
-// let salon = {
-// 	name: "The fashion pet",
-// 	phone: "999-999-9999",
-// 	address: {
-// 		street: "Palm",
-// 		number: "262-k",
-// 		city: "Los Angeles",
-// 		state: "CA",
-// 		zip: "22333",
-// 	},
-// 	pets: [],
-// };
-
-//  object constructor
-// function Salon(name, phone, address, pets) {
-// 	this.name = name;
-// 	this.phone = phone;
-// 	this.age = address;
-// 	this.pets = pets;
-// }
-
+// pet constructor
 function Pet(name, age, gender, service, breed, type) {
 	this.name = name;
 	this.age = age;
@@ -28,81 +8,78 @@ function Pet(name, age, gender, service, breed, type) {
 	this.type = type;
 }
 
-// displaying the salon name in the register page
-function salonName(x) {
-	let y = x.name;
-	document.getElementById("salon-name").innerHTML = `Salon Name: ${y}`;
-}
-salonName(salon);
-// display number of pets
-function numberOfPets(x) {
-	let y = x.pets;
-
-	return y.length;
-}
-// numberOfPets(salon);
-function displayNumberOfPets(x) {
-	document.getElementById(
-		"display-number"
-	).innerHTML = `<p>The number of registered pets in this salon is: ${numberOfPets(
-		x
-	)}</p>`;
-}
-function displayFooterInfo() {
-	document.getElementById("info").innerHTML = `<p>Salon Name: ${salon.name}</p>
-	<p>Salon Phone: ${salon.phone}</p>
-	<p> Address: ${salon.address.street} ${salon.address.number} <br> ${salon.address.city}, ${salon.address.state}  ${salon.address.zip}</p>`;
+function getE(id) {
+	return document.getElementById(id);
 }
 
-displayFooterInfo();
-
-// display pet names
-
-function displayPetNames(x) {
-	let displayArea = document.getElementById("display-names");
-	displayArea.innerHTML = "";
-	for (let i of x.pets) {
-		let nameList = document.createElement("li");
-		nameList.appendChild(document.createTextNode(i.name));
-		displayArea.appendChild(nameList);
+function displayPetTable() {
+	getE("display-table").innerHTML = "";
+	let displayTable = getE("display-table");
+	displayTable.innerHTML = "";
+	for (let pet of salon.pets) {
+		let row = document.createElement("tr");
+		for (let property in pet) {
+			let cellData = document.createElement("td");
+			cellData.appendChild(document.createTextNode(pet[property]));
+			row.appendChild(cellData);
+		}
+		displayTable.appendChild(row);
 	}
 }
+
+function reverseTable() {
+	getE("display-table").innerHTML = "";
+	for (i = salon.pets.length - 1; i >= 0; i--) {
+		let pet = salon.pets[i];
+		let row = `
+		<tr>
+		<td>${pet.name} </td>
+		<td>${pet.age} </td>
+		<td>${pet.gender} </td>
+		<td>${pet.breed} </td>
+		<td>${pet.service} </td>
+		<td>${pet.type} </td>
+		</tr>
+		`;
+		getE("display-table").innerHTML += row;
+	}
+}
+
 // registering a new pet
 
 function register() {
-	let inputName = document.getElementById("txtName");
-	let inputAge = document.getElementById("txtAge");
-	let inputGender = document.getElementById("txtGender");
-	let inputBreed = document.getElementById("txtBreed");
-	let inputService = document.getElementById("txtService");
-	let inputType = document.getElementById("txtType");
+	let inputName = getE("txtName");
+	let inputAge = getE("txtAge");
+	let inputGender = getE("txtGender");
+	let inputBreed = getE("txtBreed");
+	let inputService = getE("txtService");
+	let inputType = getE("txtType");
 	if (inputName.value == "") {
 		alert("Please enter a name");
 	} else {
-		let newPet = new Pet(inputName.value, inputAge.value, inputGender.value);
+		let newPet = new Pet(
+			inputName.value,
+			inputAge.value,
+			inputGender.value,
+			inputBreed.value,
+			inputService.value,
+			inputType.value
+		);
 		salon.pets.push(newPet);
 
-		displayPetNames(salon);
 		displayNumberOfPets(salon);
+		displayPetCards();
+		displayPetTable();
 	}
-	document.getElementById("reset-form").reset();
+	getE("reset-form").reset();
 }
 
 //adding pets
 function showForm() {
-	document.getElementById("form-div").style.display = "block";
+	getE("form-div").style.display = "block";
 }
 function hideForm() {
-	document.getElementById("form-div").style.display = "none";
+	getE("form-div").style.display = "none";
 }
 
-function init() {
-	let pet1 = new Pet("Scoopy", 60, "Male");
-	let pet2 = new Pet("Simba", 3, "Male");
-	let pet3 = new Pet("Daisy", 3, "Female");
-	salon.pets.push(pet1, pet2, pet3);
-	displayPetNames(salon);
-	displayNumberOfPets(salon);
-}
-// init();
-window.onload = init;
+// window.onload = init;
