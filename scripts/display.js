@@ -24,10 +24,11 @@ function init() {
 		"Male",
 		"Great Dane",
 		"Full Package",
-		"Dog"
+		"Dog",
+		100
 	);
-	let pet2 = new Pet("Simba", 3, "Male", "tabby", "grooming", "Cat");
-	let pet3 = new Pet("Daisy", 3, "Female", "tabby", "grooming", "Cat");
+	let pet2 = new Pet("Simba", 3, "Male", "grooming", "tabby", "Cat", 55);
+	let pet3 = new Pet("Daisy", 3, "Female", "grooming", "tabby", "Cat", 99);
 	salon.pets.push(pet1, pet2, pet3);
 	displayNumberOfPets(salon);
 	displayPetCards();
@@ -65,6 +66,7 @@ function displayPetCards() {
 			<p> Breed: &ensp;${pet.breed}</p>  
 			<p> Service:&ensp; ${pet.service}</p>
 			<p> Type:&ensp; ${pet.type}</p>
+			<p> Bill:&ensp; ${pet.bill}$</p>
 			</div>
 			<button class="btn btn-dark" onclick="removePet(${i})">Remove pet</button>
 			</div>
@@ -73,9 +75,54 @@ function displayPetCards() {
 		getE("pets").innerHTML += card;
 	}
 }
-function removePet(x) {
-	salon.pets.splice(x, 1);
-	displayPetCards();
-	displayNumberOfPets(salon);
-	displayPetTable();
+//  display tables
+function displayPetTable() {
+	getE("display-table").innerHTML = "";
+	for (let i = 0; i < salon.pets.length; i++) {
+		let pet = salon.pets[i];
+		let row = `
+		<tr>
+		<td>${pet.name} </td>
+		<td>${pet.age} </td>
+		<td>${pet.gender} </td>
+		<td>${pet.breed} </td>
+		<td>${pet.service} </td>
+		<td>${pet.type} </td>
+		<td>${pet.bill}</td>
+		</tr>
+		`;
+		getE("display-table").innerHTML += row;
+	}
+
+	// getE("display-table").innerHTML = "";
+	// let displayTable = getE("display-table");
+	// displayTable.innerHTML = "";
+	// for (let pet of salon.pets) {
+	// 	let row = document.createElement("tr");
+	// 	for (let property in pet) {
+	// 		let cellData = document.createElement("td");
+	// 		cellData.appendChild(document.createTextNode(pet[property]));
+	// 		row.appendChild(cellData);
+	// 	}
+	// 	displayTable.appendChild(row);
+	// }
+}
+
+function reverseTable() {
+	getE("display-table").innerHTML = "";
+	for (let i = salon.pets.length - 1; i >= 0; i--) {
+		let pet = salon.pets[i];
+		let row = `
+		<tr>
+		<td>${pet.name} </td>
+		<td>${pet.age} </td>
+		<td>${pet.gender} </td>
+		<td>${pet.breed} </td>
+		<td>${pet.service} </td>
+		<td>${pet.type} </td>
+		<td>${pet.bill}</td>
+		</tr>
+		`;
+		getE("display-table").innerHTML += row;
+	}
 }

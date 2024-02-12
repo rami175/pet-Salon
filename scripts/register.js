@@ -1,77 +1,73 @@
 // pet constructor
-function Pet(name, age, gender, service, breed, type) {
+function Pet(name, age, gender, service, breed, type, bill) {
 	this.name = name;
 	this.age = age;
 	this.gender = gender;
 	this.service = service;
 	this.breed = breed;
 	this.type = type;
+	this.bill = bill;
 }
 
 function getE(id) {
 	return document.getElementById(id);
 }
+// get elements from html
+let inputName = getE("txtName");
+let inputAge = getE("txtAge");
+let inputGender = getE("txtGender");
+let inputBreed = getE("txtBreed");
+let inputService = getE("txtService");
+let inputType = getE("txtType");
+let inputBill = getE("txtBill");
 
-function displayPetTable() {
-	getE("display-table").innerHTML = "";
-	let displayTable = getE("display-table");
-	displayTable.innerHTML = "";
-	for (let pet of salon.pets) {
-		let row = document.createElement("tr");
-		for (let property in pet) {
-			let cellData = document.createElement("td");
-			cellData.appendChild(document.createTextNode(pet[property]));
-			row.appendChild(cellData);
-		}
-		displayTable.appendChild(row);
+// validation
+function isValid(apet) {
+	let validaton = true;
+	// clear error stule
+	getE("txtName").classList.remove("alert-error");
+	getE("txtAge").classList.remove("alert-error");
+	if (apet.name == "") {
+		validaton = false;
+		getE("txtName").classList.add("alert-error");
 	}
+	if (apet.age == "") {
+		validaton = false;
+		getE("txtAge").classList.add("alert-error");
+	}
+	return validaton;
 }
 
-function reverseTable() {
-	getE("display-table").innerHTML = "";
-	for (i = salon.pets.length - 1; i >= 0; i--) {
-		let pet = salon.pets[i];
-		let row = `
-		<tr>
-		<td>${pet.name} </td>
-		<td>${pet.age} </td>
-		<td>${pet.gender} </td>
-		<td>${pet.breed} </td>
-		<td>${pet.service} </td>
-		<td>${pet.type} </td>
-		</tr>
-		`;
-		getE("display-table").innerHTML += row;
-	}
+function showNotificaton(msg, type) {
+	getE("notification").classList.remove("hidden");
+	getE("notification").innerHTML = `<p class="${type}">${msg} </p>`;
+	setTimeout(function () {
+		getE("notification").classList.add("hidden");
+	}, 3000);
 }
 
 // registering a new pet
 
 function register() {
-	let inputName = getE("txtName");
-	let inputAge = getE("txtAge");
-	let inputGender = getE("txtGender");
-	let inputBreed = getE("txtBreed");
-	let inputService = getE("txtService");
-	let inputType = getE("txtType");
-	if (inputName.value == "") {
-		alert("Please enter a name");
-	} else {
-		let newPet = new Pet(
-			inputName.value,
-			inputAge.value,
-			inputGender.value,
-			inputBreed.value,
-			inputService.value,
-			inputType.value
-		);
+	let newPet = new Pet(
+		inputName.value,
+		inputAge.value,
+		inputGender.value,
+		inputBreed.value,
+		inputService.value,
+		inputType.value,
+		inputBill.value
+	);
+	if (isValid(newPet) == true) {
 		salon.pets.push(newPet);
-
 		displayNumberOfPets(salon);
 		displayPetCards();
 		displayPetTable();
+		showNotificaton("Successful registration", "alert-success");
+		getE("reset-form").reset();
+	} else {
+		showNotificaton("Unsuccessful registration", "alert-error");
 	}
-	getE("reset-form").reset();
 }
 
 //adding pets
@@ -82,4 +78,10 @@ function hideForm() {
 	getE("form-div").style.display = "none";
 }
 
-// window.onload = init;
+// removing a pet
+function removePet(x) {
+	salon.pets.splice(x, 1);
+	displayPetCards();
+	displayNumberOfPets(salon);
+	displayPetTable();
+}

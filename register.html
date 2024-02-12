@@ -29,6 +29,7 @@
 		<main>
 			<!-- form -->
 			<h2>Register a new pet</h2>
+			<div id="notification" class="hidden"></div>
 			<button class="btn btn-dark" onclick="showForm()">New Pet</button>
 
 			<div class="form-div" id="form-div">
@@ -64,20 +65,27 @@
 							id="txtBreed"
 							placeholder="Enter pet breed"
 						/>
-						<label class="form-lable">Service : </label>
-						<input
-							class="form-control"
-							type="text"
-							id="txtService"
-							placeholder="Enter service"
-						/>
+						<label class="form-lable">Select Service : </label>
+						<select class="form-control" id="txtService">
+							<option value="grooming">Grooming</option>
+							<option value="vaccine">Vaccine</option>
+							<option value="nails">Nails</option>
+						</select>
+
 						<label class="form-lable">Please Select Type : </label>
-						<form action="">
+						<form>
 							<select class="form-control" name="" id="txtType">
 								<option value="Dog">Dog</option>
 								<option value="Cat">Cat</option>
 								<option value="Other">Other</option>
 							</select>
+							<label class="form-lable">Bill: </label>
+							<input
+								class="form-control"
+								type="text"
+								id="txtBill"
+								placeholder="Enter bill"
+							/>
 						</form>
 					</form>
 
@@ -122,6 +130,7 @@
 						<th>Breed</th>
 						<th>Service</th>
 						<th>Type</th>
+						<th>Bill</th>
 					</thead>
 					<tbody id="display-table"></tbody>
 				</table>

@@ -227,3 +227,13 @@ th {
 tr:nth-child(even) {
 	background-color: #f2f2f2;
 }
+.alert-error {
+	background-color: rgb(187, 65, 20);
+	box-shadow: 5px 2px 2px red;
+}
+.hidden {
+	display: none;
+}
+.alert-success {
+	background-color: green;
+}
