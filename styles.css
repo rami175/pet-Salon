@@ -194,6 +194,9 @@ footer {
 	border-radius: 5px;
 	padding: 1rem;
 }
+.card {
+	max-width: 15rem;
+}
 .card-body {
 	border: #6e6b6b solid 1px;
 	border-radius: 5px;
@@ -204,7 +207,6 @@ footer {
 table {
 	width: 80%;
 	border: 1px solid;
-	border-collapse: collapse;
 	padding: 5px;
 	text-align: center;
 	margin: 1rem;
@@ -224,16 +226,48 @@ th {
 	text-align: center;
 	margin: 1rem;
 }
-tr:nth-child(even) {
-	background-color: #f2f2f2;
+tr {
+	border: solid 3px black !important;
 }
+/* tr:nth-child(even) {
+	background-color: #f2f2f2;
+} */
 .alert-error {
-	background-color: rgb(187, 65, 20);
-	box-shadow: 5px 2px 2px red;
+	border: dotted 2px red;
+	box-shadow: 2px 2px 2px 2px red;
 }
 .hidden {
 	display: none;
 }
 .alert-success {
 	background-color: green;
+}
+/* Services */
+.serviceDisplay {
+	border: solid black 1px;
+	min-height: 500px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	align-content: space-around;
+	justify-content: space-between;
+	/* row-gap: 1rem; */
+}
+.price {
+	position: absolute;
+	bottom: 5px;
+}
+.card-text {
+	padding: 20px 5px 20px 5px;
+}
+.clicked {
+	background-color: aqua;
+	/* box-shadow: 5px rgb(180, 180, 223); */
+}
+table {
+	width: 100%;
+	margin-bottom: 10rem;
+}
+.service-row:hover {
+	cursor: pointer;
+	background-color: aqua;
 }

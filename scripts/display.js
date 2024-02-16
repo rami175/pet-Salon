@@ -22,8 +22,8 @@ function init() {
 		"Scoopy",
 		60,
 		"Male",
-		"Great Dane",
 		"Full Package",
+		"Great Dane",
 		"Dog",
 		100
 	);
@@ -56,7 +56,7 @@ function displayPetCards() {
 		}
 
 		let card = `
-			<div class="card" style="width: 18rem;">
+			<div id="${i}" class="card" >
 			<img src="${petImg}" class="card-img-top" alt="...">
 			<div class="card-body">
 			<div class="pet-name"><h2>  ${pet.name}</h2>   </div>
@@ -68,7 +68,7 @@ function displayPetCards() {
 			<p> Type:&ensp; ${pet.type}</p>
 			<p> Bill:&ensp; ${pet.bill}$</p>
 			</div>
-			<button class="btn btn-dark" onclick="removePet(${i})">Remove pet</button>
+			<button class="btn btn-dark" onclick="deletePet(${i})">Remove pet</button>
 			</div>
 					
         `;

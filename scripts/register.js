@@ -1,3 +1,4 @@
+let petId = 0;
 // pet constructor
 function Pet(name, age, gender, service, breed, type, bill) {
 	this.name = name;
@@ -7,6 +8,7 @@ function Pet(name, age, gender, service, breed, type, bill) {
 	this.breed = breed;
 	this.type = type;
 	this.bill = bill;
+	this.id = petId++;
 }
 
 function getE(id) {
@@ -79,9 +81,28 @@ function hideForm() {
 }
 
 // removing a pet
-function removePet(x) {
-	salon.pets.splice(x, 1);
-	displayPetCards();
+function deletePet(x) {
+	getE(x).remove();
+	for (let i = 0; i < salon.pets.length; i++) {
+		let pet = salon.pets;
+		if (pet[i].id == x) {
+			pet.splice(i, 1);
+		}
+	}
 	displayNumberOfPets(salon);
 	displayPetTable();
 }
+
+// service selection
+$(document).ready(function () {
+	let serviceTxt = readItems();
+	serviceTxt.forEach((element) => {
+		let s = element.name;
+		let opt1 = `
+		<option>${s}</option>
+	
+		`;
+
+		$("#txtService").append(opt1);
+	});
+});
